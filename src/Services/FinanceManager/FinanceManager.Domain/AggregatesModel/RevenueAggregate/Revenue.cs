@@ -13,17 +13,22 @@ namespace FinanceManager.Domain.AggregatesModel.RevenueAggregate
 
         public string IdentityId { get; private set; }
 
-        public Revenue(string identity, RevenueVariety expenseVariety, decimal expenseAmount)
+        protected Revenue()
         {
-            IdentityId = !string.IsNullOrWhiteSpace(identity)
-                ? identity
-                : throw new ArgumentNullException(nameof(identity));
+            RevenueVariety = new RevenueVariety();
+        }
+
+        public Revenue(string IdentityId, RevenueVariety RevenueVariety, decimal RevenueAmount)
+        {
+            this.IdentityId = !string.IsNullOrWhiteSpace(IdentityId)
+                ? IdentityId
+                : throw new ArgumentNullException(nameof(IdentityId));
 
             RevenueDate = DateTime.UtcNow;
 
-            RevenueVariety = expenseVariety;
+            this.RevenueVariety = RevenueVariety;
 
-            AddRevenueAmount(expenseAmount);
+            AddRevenueAmount(RevenueAmount);
         }
 
         public void AddRevenueAmount(decimal amount)

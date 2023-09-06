@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using FinanceManager.Domain.AggregatesModel.RevenueAggregate;
+using System.Linq.Expressions;
 
 namespace FinanceManager.Domain.SeedWork
 {
@@ -7,13 +8,13 @@ namespace FinanceManager.Domain.SeedWork
     {
         IUnitOfWork UnitOfWork { get; }
 
-        Task AddAsync(T entity);
+        Revenue Add(T entity);
 
-        Task DeleteAsync(T entity);
+        void Delete(T entity);
 
-        Task UpdateAsync(T entity);
+        void Update(T entity);
 
-        Task<List<T>> GetAsync(int limit = 0, int offset = 0);
+        Task<List<T>> GetAsync(int skip = 0, int take = 0);
 
         Task<List<T>> GetAsync(Expression<Func<T, bool>> predicate);
     }
