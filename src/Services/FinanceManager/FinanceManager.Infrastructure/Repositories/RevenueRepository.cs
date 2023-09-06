@@ -20,11 +20,16 @@ namespace FinanceManager.Infrastructure.Repositories
 
         public void Delete(Revenue entity) => _context.Revenue.Remove(entity);
 
-        public async Task<List<Revenue>> GetAsync(int skip = 0, int take = 0) =>
-            await _context.Revenue.Skip(skip).Take(take).ToListAsync();
+        public async Task<List<Revenue>> GetAsync(
+            CancellationToken cancellationToken,
+            int skip = 0,
+            int take = 0
+        ) => await _context.Revenue.Skip(skip).Take(take).ToListAsync(cancellationToken);
 
-        public async Task<List<Revenue>> GetAsync(Expression<Func<Revenue, bool>> predicate) =>
-            await _context.Revenue.Where(predicate).ToListAsync();
+        public async Task<List<Revenue>> GetAsync(
+            Expression<Func<Revenue, bool>> predicate,
+            CancellationToken cancellationToken
+        ) => await _context.Revenue.Where(predicate).ToListAsync(cancellationToken);
 
         public void Update(Revenue entity) => _context.Entry(entity).State = EntityState.Modified;
     }

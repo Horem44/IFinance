@@ -14,8 +14,11 @@ namespace FinanceManager.Domain.SeedWork
 
         void Update(T entity);
 
-        Task<List<T>> GetAsync(int skip = 0, int take = 0);
+        Task<List<T>> GetAsync(CancellationToken cancellationToken, int skip = 0, int take = 0);
 
-        Task<List<T>> GetAsync(Expression<Func<T, bool>> predicate);
+        Task<List<T>> GetAsync(
+            Expression<Func<T, bool>> predicate,
+            CancellationToken cancellationToken
+        );
     }
 }
