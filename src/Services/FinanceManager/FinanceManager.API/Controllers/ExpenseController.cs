@@ -1,4 +1,5 @@
 ﻿using FinanceManager.API.Application.Commands.Expenses.AddExpenseCommand;
+using FinanceManager.API.Application.Queries.Expenses.GetExpensesQuery;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,13 @@ namespace FinanceManager.API.Controllers
         public ExpenseController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetExpenses(CancellationToken cancellationToken)
+        {
+            var expenses = await _mediator.Send(new GetExpensesQuery(), cancellationToken);
+            return new JsonResult(expenses);
         }
 
         [HttpPost]

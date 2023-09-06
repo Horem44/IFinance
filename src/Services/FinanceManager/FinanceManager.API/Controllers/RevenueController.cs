@@ -1,4 +1,5 @@
 ﻿using FinanceManager.API.Application.Commands.Revenues.AddRevenueCommand;
+using FinanceManager.API.Application.Queries.Revenues.GetRevenuesQuery;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,13 @@ namespace FinanceManager.API.Controllers
         public RevenueController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetExpenses(CancellationToken cancellationToken)
+        {
+            var revenues = await _mediator.Send(new GetRevenuesQuery(), cancellationToken);
+            return new JsonResult(revenues);
         }
 
         [HttpPost]

@@ -5,11 +5,11 @@ using MediatR;
 
 namespace FinanceManager.API.Application.Queries.Revenues.GetRevenuesQuery
 {
-    public record GetRevenueQueryHandler(IMapper Mapper, IRevenueRepository RevenueRepository)
-        : IRequestHandler<GetRevenueQuery, List<RevenueDto>>
+    public record GetRevenuesQueryHandler(IMapper Mapper, IRevenueRepository RevenueRepository)
+        : IRequestHandler<GetRevenuesQuery, List<RevenueDto>>
     {
         public async Task<List<RevenueDto>> Handle(
-            GetRevenueQuery request,
+            GetRevenuesQuery request,
             CancellationToken cancellationToken
         )
         {

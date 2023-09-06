@@ -4,9 +4,9 @@ using FinanceManager.Domain.AggregatesModel.RevenueAggregate;
 
 namespace FinanceManager.API.Application.Queries.Revenues.GetRevenuesQuery
 {
-    public class GetRevenueQueryMapping : Profile
+    public class GetRevenuesQueryMapping : Profile
     {
-        public GetRevenueQueryMapping()
+        public GetRevenuesQueryMapping()
         {
             CreateMap<Revenue, RevenueDto>()
                 .ForMember(x => x.Id, x => x.MapFrom(z => z.Id))

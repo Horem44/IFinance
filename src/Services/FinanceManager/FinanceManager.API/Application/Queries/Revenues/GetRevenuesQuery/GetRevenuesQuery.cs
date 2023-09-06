@@ -3,5 +3,5 @@ using MediatR;
 
 namespace FinanceManager.API.Application.Queries.Revenues.GetRevenuesQuery
 {
-    public record GetRevenueQuery() : IRequest<List<RevenueDto>>;
+    public record GetRevenuesQuery() : IRequest<List<RevenueDto>>;
 }
