@@ -8,13 +8,15 @@ namespace FinanceManager.Domain.SeedWork
     {
         IUnitOfWork UnitOfWork { get; }
 
-        Revenue Add(T entity);
+        T Add(T entity);
 
         void Delete(T entity);
 
         void Update(T entity);
 
         Task<List<T>> GetAsync(CancellationToken cancellationToken, int skip = 0, int take = 0);
+
+        Task<T?> GetAsync(Guid id, CancellationToken cancellationToken);
 
         Task<List<T>> GetAsync(
             Expression<Func<T, bool>> predicate,

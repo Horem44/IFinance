@@ -3,11 +3,11 @@ using FinanceManager.Domain.AggregatesModel.RevenueAggregate;
 
 namespace FinanceManager.API.Application.Commands.Revenues.AddRevenueCommand
 {
-    public class AddRevenueCommandMapping : Profile
+    public class DeleteRevenueCommandMapping : Profile
     {
-        public AddRevenueCommandMapping()
+        public DeleteRevenueCommandMapping()
         {
-            CreateMap<AddRevenueCommand, Revenue>()
+            CreateMap<DeleteRevenueCommand, Revenue>()
                 .ForMember(x => x.RevenueAmount, x => x.MapFrom(z => z.RevenueAmount))
                 .ForMember(x => x.IdentityId, x => x.MapFrom(z => z.IdentityId));
         }

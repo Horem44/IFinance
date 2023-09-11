@@ -31,6 +31,9 @@ namespace FinanceManager.Infrastructure.Repositories
             CancellationToken cancellationToken
         ) => await _context.Revenue.Where(predicate).ToListAsync(cancellationToken);
 
+        public async Task<Revenue?> GetAsync(Guid id, CancellationToken cancellationToken) =>
+            await _context.Revenue.FirstOrDefaultAsync(cancellationToken);
+
         public void Update(Revenue entity) => _context.Entry(entity).State = EntityState.Modified;
     }
 }

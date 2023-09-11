@@ -1,4 +1,5 @@
 ﻿using FinanceManager.API.Application.Commands.Revenues.AddRevenueCommand;
+using FinanceManager.API.Application.Commands.Revenues.UpdateRevenueCommand;
 using FinanceManager.API.Application.Queries.Revenues.GetRevenuesQuery;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,27 @@ namespace FinanceManager.API.Controllers
 
         [HttpPost]
         public async Task<IActionResult> AddRevenue(
-            AddRevenueCommand command,
+            [FromBody] DeleteRevenueCommand command,
+            CancellationToken cancellationToken
+        )
+        {
+            var revenueId = await _mediator.Send(command, cancellationToken);
+            return Ok(revenueId);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateRevenue(
+            [FromBody] UpdateRevenueCommand command,
+            CancellationToken cancellationToken
+        )
+        {
+            var revenueId = await _mediator.Send(command, cancellationToken);
+            return Ok(revenueId);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteRevenue(
+            [FromBody] DeleteRevenueCommand command,
             CancellationToken cancellationToken
         )
         {

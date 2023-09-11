@@ -2,5 +2,5 @@
 
 namespace FinanceManager.API.Application.Commands.Revenues.AddRevenueCommand
 {
-    public record AddRevenueCommand(decimal RevenueAmount, string IdentityId) : IRequest<Guid>;
+    public record DeleteRevenueCommand(decimal RevenueAmount, string IdentityId) : IRequest<Guid>;
 }

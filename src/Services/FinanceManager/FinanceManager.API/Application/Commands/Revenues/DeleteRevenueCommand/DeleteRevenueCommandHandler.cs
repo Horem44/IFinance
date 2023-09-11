@@ -2,7 +2,7 @@
 using FinanceManager.Domain.AggregatesModel.RevenueAggregate;
 using MediatR;
 
-namespace FinanceManager.API.Application.Commands.Revenues.AddRevenueCommand
+namespace FinanceManager.API.Application.Commands.Revenues.DeleteRevenueCommand
 {
     public record DeleteRevenueCommandHandler(IMapper Mapper, IRevenueRepository RevenueRepository)
         : IRequestHandler<DeleteRevenueCommand, Guid>
@@ -12,9 +12,15 @@ namespace FinanceManager.API.Application.Commands.Revenues.AddRevenueCommand
             CancellationToken cancellationToken
         )
         {
-            var revenue = RevenueRepository.Add(Mapper.Map<Revenue>(request));
-            await RevenueRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
+            var revenue = await RevenueRepository.GetAsync(request.Id, cancellationToken);
 
+            if (revenue is null)
+            {
+                throw new ArgumentNullException(nameof(revenue));
+            }
+
+            RevenueRepository.Delete(revenue);
+            await RevenueRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
             return revenue.Id;
         }
     }

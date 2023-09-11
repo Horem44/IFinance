@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace FinanceManager.Infrastructure.Repositories
 {
-    public class ExpenseRepository
+    public class ExpenseRepository : IExpenseRepository
     {
         private readonly FinanceManagerContext _context;
 
@@ -30,6 +30,9 @@ namespace FinanceManager.Infrastructure.Repositories
             Expression<Func<Expense, bool>> predicate,
             CancellationToken cancellationToken
         ) => await _context.Expense.Where(predicate).ToListAsync(cancellationToken);
+
+        public async Task<Expense?> GetAsync(Guid id, CancellationToken cancellationToken) =>
+            await _context.Expense.FirstOrDefaultAsync(cancellationToken);
 
         public void Update(Expense entity) => _context.Entry(entity).State = EntityState.Modified;
     }
