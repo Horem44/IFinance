@@ -4,6 +4,7 @@ using FinanceManager.API.Application.Commands.Revenues.AddRevenueCommand;
 using FinanceManager.API.Application.Validations;
 using FinanceManager.Infrastructure;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +32,7 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

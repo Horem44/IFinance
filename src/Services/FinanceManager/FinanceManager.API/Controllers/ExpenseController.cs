@@ -3,6 +3,7 @@ using FinanceManager.API.Application.Commands.Expenses.DeleteExpenseCommand;
 using FinanceManager.API.Application.Commands.Expenses.UpdateExpenseCommand;
 using FinanceManager.API.Application.Queries.Expenses.GetExpensesQuery;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinanceManager.API.Controllers
