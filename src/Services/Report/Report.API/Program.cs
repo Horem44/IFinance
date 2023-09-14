@@ -5,11 +5,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-var app = builder.Build();
-
 builder.Services.AddDbContext<ReportContext>(
     option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+var app = builder.Build();
 
 app.UseHttpsRedirection();
 

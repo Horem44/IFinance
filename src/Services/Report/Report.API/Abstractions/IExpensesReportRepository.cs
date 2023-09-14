@@ -1,4 +1,6 @@
-﻿namespace Report.API.Abstractions
+﻿using Report.API.Entities;
+
+namespace Report.API.Abstractions
 {
-    public interface IExpensesReportRepository { }
+    public interface IExpensesReportRepository : IRepository<ExpensesReport> { }
 }
